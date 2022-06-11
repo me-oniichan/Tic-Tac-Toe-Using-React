@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Icon from "./Icon";
-// import { useState } from "react";
 
 const data = new Array(9).fill(" ");
 
@@ -9,52 +8,34 @@ const Grid = () => {
   const [msg, setMsg] = useState(
     `Start Playing ${turn ? "Circle's" : "Cross'"} turn`
   );
+  const [game, setGame] = useState(1);
 
   const playTurn = (index) => {
-    if (data[index] === " ") {
+    if (data[index] === " " && game) {
       data[index] = turn ? "circle" : "cross";
       setMsg(`${turn ? "Cross'" : "Circle's"} turn`);
       setTurn(!turn);
-      checkWin(index);
     }
+    checkWin();
   };
 
-  const checkWin = (index) => {
-    if (
-      data[4] != " " && (
-      data[0] == data[4] && data[4] == data[8]) ||
-      (data[2] == data[4] && data[4] == data[6])
-    )
-      setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
+  const checkWin = () => {
+    if(!game){
+      setMsg("Game already over");
+   }
+   else if(
+     (data[1] === data[2] && data[2]=== data[0] && data[0] !== " ") ||
+     (data[5] === data[4] && data[4]=== data[3] && data[3] !== " ") ||
+     (data[6] === data[7] && data[7]=== data[8] && data[6] !== " ") ||
+     (data[0] === data[3] && data[3]=== data[6] && data[6] !== " ") ||
+     (data[1] === data[4] && data[4]=== data[7] && data[7] !== " ") ||
+     (data[2] === data[5] && data[5]=== data[8] && data[8] !== " ") ||
+     (data[0] === data[4] && data[4]=== data[8] && data[8] !== " ") ||
+     (data[2] === data[4] && data[4]=== data[6] && data[2] !== " ")){
+      setMsg(`${turn?"Circle Win": "Cross Win"}`);
+      setGame(0);
+     }
 
-    else if (index % 3 == 0) {
-      if (data[0] === data[3] && data[3] === data[6]) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      } else if (
-        data[index] == data[index + 1] &&
-        data[index + 2] === data[index]
-      ) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      }
-    } else if (index % 3 == 1) {
-      if (data[1] === data[4] && data[4] === data[7]) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      } else if (
-        data[index - 1] == data[index] &&
-        data[index + 1] === data[index]
-      ) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      }
-    } else if (index % 3 == 2) {
-      if (data[2] === data[5] && data[5] === data[8]) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      } else if (
-        data[index - 2] == data[index - 1] &&
-        data[index] === data[index]
-      ) {
-        setMsg(`${turn ? "Circle Win" : "Cross Win"}`);
-      }
-    }
   };
 
   return (

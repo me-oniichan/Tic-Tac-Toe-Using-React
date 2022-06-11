@@ -1,14 +1,14 @@
 import React from "react";
 import Grid from "./Grid";
-import "./App.css"
+import "./App.css";
 
-const App = ()=>{
-  return(
+const App = () => {
+  return (
     <div className="backgrd">
       <div className="heading">Tic Tac Toe</div>
-      <Grid/>
+      <Grid />
     </div>
   );
-}
+};
 
 export default App;
