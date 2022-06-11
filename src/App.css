@@ -18,10 +18,15 @@ body{
 }
 
 .msg{
-  color: #0cbb00;
+  color: #2de000;
+  padding: 5px;
+  margin: auto;
+  width: 300px;
+  border-radius: 5px;
   margin-top: 25px;
   font-weight: 700;
   font-size: 30px;
+  background-color: #853ed1;
 }
 
 .grid{
@@ -33,7 +38,7 @@ body{
 }
 
 .cell{
-  background-color: rgb(213, 157, 84);
+  background-color: #d59d54;
   width: 100px;
   height: 100px;
   border-radius: 10px;
